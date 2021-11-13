@@ -7,7 +7,7 @@ headers = {'Authorization': 'Bearer %s' % api_key}
 
 url='https://api.yelp.com/v3/businesses/search'
 
-params = {'term':'seafood','location':'New York City'}
+params = {'location':'New York City'}
 req = requests.get(url, headers=headers)
 parsed = json.loads(req.text)
 
