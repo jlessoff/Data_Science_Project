@@ -25,34 +25,32 @@ cgdensity = cgdensity.sort_values(by='A')
 cglabels = list(cgdensity.index)
 cglabels = [ '\n'.join(wrap(l, 20)) for l in cglabels ]
 
-# cgdensity.plot(kind='barh', stacked='True', mark_right=True, figsize = (10,8), color=['b','g','r'])
-# plt.ylabel('')
-# plt.xlim(0, 1.15)
-# plt.xlabel('Percentage of restaurants')
-# plt.title('Grade distribution across top 10 cuisine types')
-# plt.show()
+cgdensity.plot(kind='barh', stacked='True', mark_right=True, figsize = (10,8), color=['b','g','r'])
+plt.ylabel('')
+plt.xlim(0, 1.15)
+plt.xlabel('Percentage of restaurants')
+plt.title('Grade distribution across top 10 cuisine types')
+plt.show()
 
 ##################################################################################
 #
 cuisinegrade['score']=cuisinegrade['score'].astype(int)
-print(cuisinegrade)
-average_score=cuisinegrade.groupby('cuisine_description')['score'].mean().sort_values()
-print(average_score)
-print(cuisinegrade.groupby('cuisine_description')['score'].mean().describe())
-
-cuis_avg=cuisinegrade.groupby('cuisine_description')['score'].mean().values
-print(cuis_avg)
 
 
 mean=[]
 median=[]
-twenty=cuisinegrade['cuisine_description'].value_counts().head(20).index
+twenty=cuisinegrade['cuisine_description'].value_counts().index
+rows = []
 for i in range(0,20):
     score=cuisinegrade.loc[cuisinegrade['cuisine_description']==twenty[i]]['score']
-    plt.hist(score,label=twenty[i][:15],bins=int(np.max(score.values)/2))
-    plt.xlim((0,50))
-    plt.axvline(x=np.mean(score),color='r',label=f'Mean = {round(np.mean(score),1)}',)
-    plt.axvline(x=np.median(score),color='y',label=f'Median = {round(np.median(score),1)}')
+    mean=round(np.mean(score),1)
+    median=round(np.median(score),1)
+    name=twenty[i][:15]
+    rows.append([name, mean, median])
+    plt.hist(score,label=name,bins=int(np.max(score.values)/2))
     plt.title(f'Score distribution for {twenty[i][:15]} restaurants')
-    plt.legend()
+    plt.axvline(x=median, color='r', label=f'Median = {median}', )
+    plt.axvline(x=mean, color='g', label=f'Median = {mean}', )
     plt.show()
+df = pd.DataFrame(rows, columns=["Name", "Mean", "Median"])
+print(df)
