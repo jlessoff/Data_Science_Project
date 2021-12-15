@@ -11,7 +11,7 @@ nyc = [40.742, -73.956]
 lat = results_df.latitude.tolist()
 lng = results_df.longitude.tolist()
 
-color_dict = {'A_rep': 'green', 'B_rep': 'yellow', 'C_rep': 'red'}
+color_dict = {'A_rep': 'grey', 'B_rep': 'yellow', 'C_rep': 'red'}
 
 
 
