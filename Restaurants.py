@@ -149,7 +149,7 @@ plt.xlim(0, 1.15)
 
 plt.xlabel('Percentage of restaurants')
 plt.title('Grade dist')
-plt.savefig('gradebycuisine.png')
+plt.savefig('/data/gradebycuisine.png')
 
 ##get score distribution for individual cuisine type top 20 cuisines
 cuisinegrade['score']=cuisinegrade['score'].astype(int)
@@ -167,7 +167,7 @@ for i in range(0,15):
     plt.title(f'Score distribution for {twenty[i][:15]} restaurants')
     plt.axvline(x=median, color='r', label=f'Median = {median}', )
     plt.axvline(x=mean, color='g', label=f'Median = {mean}', )
-    plt.savefig(twenty[i]+'scoredistribution.png')
+    plt.savefig(twenty[i]+'/data/scoredistribution.png')
 
     plt.show()
 
@@ -203,14 +203,14 @@ for lat, lng, grade in zip(results_df['latitude'],
                         fill_opacity=0.7,
                         parse_html=False).add_to(map_NM)
 
-map_NM.save('restaurantmap.html')
+map_NM.save('/data/map/restaurantmap.html')
 
 #heat map of a restaurant
 results_df1=results_df[['latitude','longitude','c']]
 results_df1 = results_df1.loc[(results_df1.c == "A_rep")]
 map_nm = folium.Map(location=[40.742, -73.956], zoom_start=11)
 HeatMap(data=results_df1[['latitude','longitude']].groupby(['latitude','longitude']).count().reset_index().values.tolist(), radius=7, max_zoom=10).add_to(map_nm)
-map_nm.save('A_heat_map.html')
+map_nm.save('/data/map/A_heat_map.html')
 
 #heat map of b restaurant
 
@@ -218,7 +218,7 @@ results_df1=results_df[['latitude','longitude','c']]
 results_df1 = results_df1.loc[(results_df1.c == "B_rep")]
 map_nm = folium.Map(location=[40.742, -73.956], zoom_start=11)
 HeatMap(data=results_df1[['latitude','longitude']].groupby(['latitude','longitude']).count().reset_index().values.tolist(), radius=7, max_zoom=10).add_to(map_nm)
-map_nm.save('B_heat_map.html')
+map_nm.save('/data/map/B_heat_map.html')
 
 #heat map of c restaurant
 
@@ -226,7 +226,7 @@ results_df1=results_df[['latitude','longitude','c']]
 results_df1 = results_df1.loc[(results_df1.c == "C_rep")]
 map_nm = folium.Map(location=[40.742, -73.956], zoom_start=11)
 HeatMap(data=results_df1[['latitude','longitude']].groupby(['latitude','longitude']).count().reset_index().values.tolist(), radius=7, max_zoom=10).add_to(map_nm)
-map_nm.save('C_heat_map.html')
+map_nm.save('/data/map/C_heat_map.html')
 
 
 
