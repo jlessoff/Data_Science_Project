@@ -150,10 +150,6 @@ def plot_grade_distribution(cgdensity: pd.DataFrame, cglabels: list) -> None:
     # Save the plot to a file
     plt.savefig('gradebycuisine.png')
 
-# Call the functions to generate and plot the grade distribution data
-cgdensity, cglabels = get_cuisine_grade_distribution(results_df)
-plot_grade_distribution(cgdensity, cglabels)
-
 def get_cuisine_score_distribution(df: pd.DataFrame, top_n: int = 20) -> pd.DataFrame:
     """
     Get the score distribution for each cuisine type.
@@ -216,5 +212,7 @@ def plot_score_density(df: pd.DataFrame) -> None:
 cuisine_scores = get_cuisine_score_distribution(results_df)
 plot_score_density(results_df)
 
-
+# Call the functions to generate and plot the grade distribution data
+cgdensity, cglabels = get_cuisine_grade_distribution(results_df)
+plot_grade_distribution(cgdensity, cglabels)
 
