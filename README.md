@@ -1,8 +1,14 @@
 # Data_Science_Project
 Currently exploring yelp data and NYC restaurant / rodent data 
 report and methodology: https://jlessoff.github.io/PDFs/NYC_RESTO.pdf
+
+
 **Readme updated with help of chatbot 🫡** 
+
+
 **Stay tuned for improved code organization and documentation 🥲😅** 
+
+
 **In meantime, please reach out with questions** 
 
 
